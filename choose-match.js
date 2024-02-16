@@ -37,6 +37,9 @@
 //         window.location.hash = target;
 //     });
 // });
+
+alert('loaded');
+
 let activePage = `1`;
 let visited = [`1`];
 let pages = document.querySelector('.pages');

@@ -1,43 +1,3 @@
-//do not include in your production env
-//for demo purpose Only
-
-// setTimeout(function () {
-//     $(".modal:not(.auto-off)").modal("show");
-// },200);
-
-// (function($) {
-//     //For demo purpose adding positions to modal for preview
-
-//     $(document).on("click","[data-modal-position]",function (e) {
-//         e.preventDefault();
-//         //removing previously added classes
-//         $("#positionModal").removeAttr("class");
-//         // adding back modal class and the selected position
-//         $("#positionModal").addClass( "modal fade " + $(this).attr('data-modal-position'));
-//         //making the modal visible
-//         $("#positionModal").modal("show");
-
-//     })
-// })(window.jQuery);
-
-
-// $(document).on("click",".open-frame",function (e) {
-//     if(window.innerWidth > 780){
-//         e.preventDefault();
-//         $("#frame").attr("src",$(this).attr("href"));
-//     }
-// });
-// $('a[href^="#license"]').on('click',function (e) {
-//     e.preventDefault();
-//     var target = this.hash;
-//     $target = $(target);
-//     $('html, body').stop().animate({
-//         'scrollTop':  $target.offset().top //no need of parseInt here
-//     }, 900, 'swing', function () {
-//         window.location.hash = target;
-//     });
-// });
-
 alert('loaded');
 
 let activePage = `1`;
@@ -86,44 +46,13 @@ screenList = `<div class="screen screen-${1}">
             </ul>
         </div>`;
 pages.insertAdjacentHTML('afterbegin', pagesList);
-// pages.addEventListener('click', (e) => {
-//     activePage = e.target.innerText;
-//     for (let visit = 0; visit <= visited.length; visit++) {
-//         if (visited.includes(e.target.innerText)) {
-//             e.target.classList.add('visited');
-//         }
-//     }
-//     if (!e.target.className) {
-//         e.target.classList.add('active');
-//     } else if(e.target.innerText !== `1`){
-//         e.target.classList.remove('active');
-//     }
-//     for (const screen of screens.children) {
-//         if (screen.className.includes(e.target.innerText)) {
-//             screen.classList.add('active');
-//             screen.classList.remove('hide');
-//         } else {
-//             screen.classList.add('hide');
-//             screen.classList.remove('active');
-//         }
-//     }
-//     // push only unique value to visisted array
-//     if (visited.indexOf(e.target.innerText) === -1) {
-//         visited.push(e.target.innerText);
-//         screenList = `<div class="screen screen-${Number(activePage)}">
-//             <h3 class="heading">${data[Number(activePage) - 1].question}</h3>
-//             <ul class="products">
-//                 ${renderList(data[Number(activePage) - 1].options)}
-//             </ul>
-//         </div>`;
-//         screens.insertAdjacentHTML('afterbegin', screenList);
-//     }
-//     console.log('screen 1', visited);
-// });
+
 let result = [];
-let screenNum = 2;
+let screenNum = 1;
 let lastScreen =  document.querySelector('#thankYouModal');
 nextBtn.addEventListener('click', () => {
+
+    
     let currentElement = '';
     for (const screen of screens.children) {
         currentElement = screen.tagName === 'DIV' && screen.lastElementChild.childNodes;
@@ -137,11 +66,14 @@ nextBtn.addEventListener('click', () => {
         }
     }
     currentElement = currentElement.length > 3 ? Array.from(currentElement).filter(item => item.className).map(ele => ele.innerText.trim()) : [currentElement[1].value];
+
+     console.log('Next clicked', currentElement)
+    
     result.push({[`screen${screenNum - 1}`]: currentElement.join(', ')});
     if (screenNum === 1) {
         nextBtnText.innerText = "Submit"
     }
-    if (screenNum > 4) {
+    if (screenNum > 1) {
         lastScreen.style.display = 'block';
         screensContainer.style.display = 'none';
     }
